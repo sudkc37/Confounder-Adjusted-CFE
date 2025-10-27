@@ -36,45 +36,36 @@
                         <h3>1. Confounder Identification via Bayesian Networks</h3>
                         <p>The system identifies confounding variables by:</p>
                         <ul>
-                            <li>Generating DAGs using Hill Climbing search with BIC scoring</li>
-                            <li>Identifying variables that influence both treatment and outcome</li>
-                            <li>Imposing constraints to ensure causal relationships with outcome variables</li>
+                            <li>Generating DAGs using Hill Climbing search with BIC scoring.</li>
+                            <li>Identifying variables that influence both treatment and outcome.</li>
+                            <li>Imposing constraints to ensure causal relationships with outcome variables.</li>
                         </ul>
-                    </div>
-
- <div class="step">
+                    <div class="step">
                         <h3>2. Confounder Filtration Method (CFM)</h3>
-                        <p>During training, identified confounders are masked:</p>
-                        <div class="code-block">X_masked = X ⊙ M</div>
-                        <p>Where M is a binary mask matrix that zeros out confounder features.</p>
-                    </div>
+                        <p>Once confounders are identified from the DAG, we filter them out during model training to prevent bias:</p>
+                        <ul>
+                            <li><strong>Create Binary Mask:</strong> Generate a mask matrix M where confounder positions are set to 0, and all other features are set to 1.</li>
+                            <li><strong>Apply Element-wise Multiplication:</strong> Multiply input data X with mask M to zero out confounding features.</li>
+                            <li><strong>Train Neural Network:</strong> Train the model on masked data X_masked, ensuring confounders don't influence predictions.</li>
+                        </ul>
+                       </div>
 
   <div class="step">
-                        <h3>3. Counterfactual Generation</h3>
-                        <p>Extends DICE optimization to use confounder-free models:</p>
-                        <div class="code-block">C(x) = arg min [yloss(f(C_i), y) + dist(C_i, x) - λ * dpp(C_1,...,C_n)]</div>
-                    </div>
-                </div>
-            </div>
+                        <h3>3. Counterfactual Generation with Adjusted DICE</h3>
+                        <p>We generate diverse counterfactual explanations using the confounder-free model through a multi-objective optimization:</p>
+                        <ul>
+                            <li><strong>yloss term:</strong> Ensures counterfactuals achieve the desired prediction outcome (e.g., loan approval).</li>
+                            <li><strong>dist term:</strong> Minimizes changes from the original instance - finding the smallest adjustments needed.</li>
+                            <li><strong>dpp term:</strong> Maintains diversity among counterfactuals using Determinantal Point Process, giving multiple actionable options.</li>
+                            <li><strong>λ weights:</strong> Balance between prediction accuracy, proximity to original, and diversity.</li>
+                        </ul>
+                        
+      
 
   <div class="section">
                 <h2>Performance Improvements</h2>
-                <div class="highlight">
-                    <div class="stats">
-                        <div class="stat-card">
-                            <div class="stat-number">+4.92%</div>
-                            <div class="stat-label">Test Accuracy Improvement</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">90.43%</div>
-                            <div class="stat-label">Final Test Accuracy</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">-13.8%</div>
-                            <div class="stat-label">MSE Loss Reduction</div>
-                        </div>
-                    </div>
-                </div>
+                
+      
 
   <table>
                     <thead>
