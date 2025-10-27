@@ -11,7 +11,7 @@
         <div class="content">
             <div class="section">
                 <h2>Overview</h2>
-                <p>This project extends existing counterfactual explanation methods (Wachter et al., DICE) by incorporating a confounder identification and filtration technique. By adjusting for confounding variables before model training this model achieve improved prediction accuracy and more reliable counterfactual explanations.</p>
+                <p>This project extends existing counterfactual explanation methods (Wachter and  DICE) by incorporating a confounder identification and filtration technique. By adjusting for confounding variables before model training this model achieve improved prediction accuracy and more reliable counterfactual explanations.</p>
             </div>
 
    <div class="section">
