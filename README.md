@@ -156,7 +156,7 @@
   <div class="section">
                 <h2>GitHub Repository</h2>
                 <div class="highlight">
-                    <p style="font-size: 1.1em;">Access the complete source code, documentation, and examples:</p>
+                    <p style="font-size: 1.1em;">Access the complete  documentation, and examples:</p>
                     <p style="margin-top: 15px;"><strong>🔗 <a href="https://github.com/sudkc37" style="color: #667eea; text-decoration: none; font-weight: 600;">github.com/sudkc37</a></strong></p>
                 </div>
             </div>
